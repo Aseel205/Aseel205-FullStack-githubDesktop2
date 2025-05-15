@@ -1,0 +1,2 @@
+Start the Frontend (React) App :  npm run dev
+Start the server  : npx json-server --port 3001 --watch notes.json

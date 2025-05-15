@@ -1,0 +1,22 @@
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    margin-top: var(--space-lg);
+  }
+  
+  .pagination button {
+    min-width: 2.5em;
+    padding: var(--space-xs) var(--space-sm);
+    background: #26262e;
+    border: 1px solid #444;
+  }
+  
+  .pagination button[disabled] {
+    opacity: 0.4;
+  }
+  
+  .pagination button:not([disabled]):hover {
+    background: #3a3a48;
+  }

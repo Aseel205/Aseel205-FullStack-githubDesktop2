@@ -1,0 +1,42 @@
+:root {
+    /* spacing scale */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+  
+    /* card & background */
+    --card-bg: rgba(30, 30, 30, 0.9);
+    --card-radius: 0.75rem;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  
+    /* typography */
+    --font-heading: 1.25rem;
+    --font-body: 1rem;
+  }
+  
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    color: inherit;
+  }
+  
+  .card h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-heading);
+  }
+  
+  .card small {
+    display: block;
+    margin-bottom: var(--space-sm);
+    opacity: 0.7;
+  }
+  
+  button {
+    margin-right: var(--space-sm);
+  }
