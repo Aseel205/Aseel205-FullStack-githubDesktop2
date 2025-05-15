@@ -1,4 +1,5 @@
 import request from 'supertest';
+import mongoose from 'mongoose';        // <-- add this
 import app from '../server'; // Import app from the server
 
 describe('CRUD operations', () => {
@@ -7,7 +8,7 @@ describe('CRUD operations', () => {
   // Test for creating a note
   it('should create a new note', async () => {
     const response = await request(app)
-      .post('/notes') // Correct route here
+      .post('/notes')
       .send({
         title: 'Test Note',
         content: 'This is a test note.',
@@ -16,14 +17,12 @@ describe('CRUD operations', () => {
 
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('_id');
-    noteId = response.body._id; // Save the created note's ID for further tests
+    noteId = response.body._id;
   });
 
   // Test for reading notes
   it('should read notes', async () => {
-    const response = await request(app)
-      .get('/notes'); // Correct route here
-
+    const response = await request(app).get('/notes');
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
   });
@@ -31,7 +30,7 @@ describe('CRUD operations', () => {
   // Test for updating a note
   it('should update a note', async () => {
     const response = await request(app)
-      .put(`/notes/${noteId}`) // Correct route here
+      .put(`/notes/${noteId}`)
       .send({ title: 'Updated Title' });
 
     expect(response.status).toBe(200);
@@ -40,9 +39,7 @@ describe('CRUD operations', () => {
 
   // Test for deleting a note
   it('should delete a note', async () => {
-    const response = await request(app)
-      .delete(`/notes/${noteId}`); // Correct route here
-
+    const response = await request(app).delete(`/notes/${noteId}`);
     expect(response.status).toBe(204);
   });
 
@@ -50,7 +47,6 @@ describe('CRUD operations', () => {
     const response = await request(app).post('/notes').send({
       title: 'Missing content and author',
     });
-  
     expect(response.status).toBe(400);
   });
 
@@ -60,19 +56,19 @@ describe('CRUD operations', () => {
       content: 'Content',
       author: { name: 'Author', email: 'a@example.com' },
     });
-  
+
     const noteId = create.body._id;
-  
+
     const response = await request(app).get(`/notes/${noteId}`);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('_id', noteId);
   });
 
   it('should return 404 when updating a nonexistent note', async () => {
-    const response = await request(app).put('/notes/000000000000000000000000').send({
-      title: 'Nonexistent',
-    });
-  
+    const response = await request(app)
+      .put('/notes/000000000000000000000000')
+      .send({ title: 'Nonexistent' });
+
     expect(response.status).toBe(404);
   });
 
@@ -87,8 +83,6 @@ describe('CRUD operations', () => {
     expect(Array.isArray(response.body)).toBe(true);
     expect(response.body.length).toBeLessThanOrEqual(5);
   });
-
-
 });
 
 afterAll(async () => {
