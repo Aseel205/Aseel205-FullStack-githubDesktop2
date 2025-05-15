@@ -90,3 +90,7 @@ describe('CRUD operations', () => {
 
 
 });
+
+afterAll(async () => {
+  await mongoose.connection.close();
+});
