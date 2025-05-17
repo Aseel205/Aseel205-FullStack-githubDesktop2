@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './frontend/playwright-tests',
+  testDir: './playwright-tests',
   timeout: 30 * 1000, // 30 seconds per test
   expect: {
     timeout: 5000, // 5 seconds for expect conditions
